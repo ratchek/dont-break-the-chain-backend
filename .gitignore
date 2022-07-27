@@ -1,1 +1,4 @@
 *.swp
+
+# Make sure you don't push all your secrets to the internet
+.env 
