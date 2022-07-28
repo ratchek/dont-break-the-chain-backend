@@ -1,10 +1,14 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import json
 app = Flask(__name__)
 
+
+# client = pymongo.MongoClient("mongodb+srv://flask-server:<password>@dont-break-the-chain-ap.syle4ff.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
+db = client.test
+
 temp_data = {"2021": {"1": ["1","3","5"], "3":["1","4","14"]}}
 def print_data():
-    return json.dumps(temp_data)
+    return jsonify(temp_data)
 def set_data(data):
     global temp_data
     temp_data = data
