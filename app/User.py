@@ -1,13 +1,9 @@
-from dotenv import dotenv_values
-from pymongo import MongoClient
-from pymongo.server_api import ServerApi
+import db
+from bson.objectid import ObjectId
 
-DB_CONNECTION_ENV_KEY= "MONGO_DB_CONNECTION_STRING_WITH_PASSWORD"
 class User():
     def __init__(self):
-        config = dotenv_values(".env")
-        self.client = MongoClient(config[DB_CONNECTION_ENV_KEY], server_api=ServerApi('1'))
-
+        self.db = db.connect_to_users()
     # TODO
     # Hash password. Don't just store it in plaintext like that
     # This is just for testing purposes
@@ -16,6 +12,15 @@ class User():
             "email": email,
             "password": password,
         }
-        self.client.test.users.insert_one(user_document)
-
-
+        self.id = self.db.insert_one(user_document).inserted_id
+    def connect_to_user(self, user_id):
+            self.id = self.db.find_one({"_id":ObjectId(user_id)})['_id']
+    def checkForId(self):
+        try:
+            if self.id is None:
+                raise Exception("You need to connect to the user first via connect_to_user() or new_user()")
+        except AttributeError:
+                raise Exception("You need to connect to the user first via connect_to_user() or new_user()")
+    def save_cal(self, cal):
+        self.checkForId()
+        self.db.update_one({"_id":self.id}, {"$set": {"cal":cal}})
