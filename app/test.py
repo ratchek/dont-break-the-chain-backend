@@ -1,5 +1,5 @@
-import db
+from User import User
 
-user = db.User()
-user.new_user("test@test.com", "!23")
+user = User()
+user.new_user("new_test@test.com", "!23")
 
