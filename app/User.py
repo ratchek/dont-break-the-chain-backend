@@ -24,3 +24,6 @@ class User():
     def save_cal(self, cal):
         self.checkForId()
         self.db.update_one({"_id":self.id}, {"$set": {"cal":cal}})
+    def get_cal(self):
+        self.checkForId()
+        return self.db.find_one({"_id":self.id}, {"cal":1})["cal"]
