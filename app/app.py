@@ -1,10 +1,8 @@
+from User import User
 from flask import Flask, request, jsonify
 import json
+
 app = Flask(__name__)
-
-
-# client = pymongo.MongoClient("mongodb+srv://flask-server:<password>@dont-break-the-chain-ap.syle4ff.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
-db = client.test
 
 temp_data = {"2021": {"1": ["1","3","5"], "3":["1","4","14"]}}
 def print_data():
@@ -16,6 +14,17 @@ def set_data(data):
 @app.route('/')
 def index():
     return 'This is my api. There are many like it, but this one is mine.'
+
+@app.route('/user/create', methods = ['POST'])
+def create_user():
+    email = request.json['email']
+    password = request.json['password']
+    user = User()
+    if user.new_user(email, password):
+        return "Success! Created user {}".format(user.id)
+    else:
+        return "User email already exists"  
+
 
 @app.route('/cal', methods = ['POST', 'GET'])
 def get_cal():

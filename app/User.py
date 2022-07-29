@@ -12,7 +12,15 @@ class User():
             "email": email,
             "password": password,
         }
-        self.id = self.db.insert_one(user_document).inserted_id
+        if self.email_exists(email):
+            return False
+        else:
+            self.id = self.db.insert_one(user_document).inserted_id
+            return True
+    def email_exists(self, email):
+        if self.db.find_one({"email":email}):
+            return True
+        return False
     def connect_to_user(self, user_id):
             self.id = self.db.find_one({"_id":ObjectId(user_id)})['_id']
     def checkForId(self):
