@@ -26,28 +26,34 @@ def create_user():
         return "User email already exists"  
 
 
-@app.route('/cal', methods = ['POST', 'GET'])
+@app.route('/cal')
 def cal():
-    if request.method == 'GET':
-        user_id = request.json["user"]
-        user = User()
-        user.connect_to_user(user_id)
-        cal = user.get_cal()
-        return (jsonify(cal))
-    if request.method == 'POST':
-        day = request.json['day'] 
-        month = request.json['month'] 
-        year = request.json['year'] 
-        if year in temp_data:
-            if month in temp_data[year]:
-                if day in temp_data[year][month]:
-                    temp_data[year][month].remove(day)
-                else:
-                    temp_data[year][month].append(day)      
-            else: 
-                temp_data[year][month] = [day]
-        else:
-            temp_data[year] = {month: [day]}
+    user_id = request.json["user"]
+    user = User()
+    user.connect_to_user(user_id)
+    cal = user.get_cal()
+    return (jsonify(cal))
+
+@app.route('/cal/flip_date', methods = ['POST'])
+def flip_date():
+    day = request.json["date"]['day'] 
+    month = request.json["date"]['month'] 
+    year = request.json["date"]['year'] 
+    user_id = request.json["user"]
+    user = User()
+    user.connect_to_user(user_id)
+    cal = user.get_cal()
+    if year in cal:
+        if month in cal[year]:
+            if day in cal[year][month]:
+                cal[year][month].remove(day)
+            else:
+                cal[year][month].append(day)      
+        else: 
+            cal[year][month] = [day]
+    else:
+        cal[year] = {month: [day]}
+    user.save_cal(cal)  
     return "Success!"
 
 # Overwrites the whole calendar with whatever the React page is sending over
