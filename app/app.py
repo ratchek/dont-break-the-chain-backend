@@ -4,13 +4,6 @@ import json
 
 app = Flask(__name__)
 
-temp_data = {"2021": {"1": ["1","3","5"], "3":["1","4","14"]}}
-def print_data():
-    return jsonify(temp_data)
-def set_data(data):
-    global temp_data
-    temp_data = data
-
 @app.route('/')
 def index():
     return 'This is my api. There are many like it, but this one is mine.'
