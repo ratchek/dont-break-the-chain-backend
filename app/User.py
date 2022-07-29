@@ -11,6 +11,7 @@ class User():
         user_document = {
             "email": email,
             "password": password,
+            "cal":{}
         }
         if self.email_exists(email):
             return False

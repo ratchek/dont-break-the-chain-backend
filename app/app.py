@@ -29,7 +29,11 @@ def create_user():
 @app.route('/cal', methods = ['POST', 'GET'])
 def cal():
     if request.method == 'GET':
-        return print_data()
+        user_id = request.json["user"]
+        user = User()
+        user.connect_to_user(user_id)
+        cal = user.get_cal()
+        return (jsonify(cal))
     if request.method == 'POST':
         day = request.json['day'] 
         month = request.json['month'] 
