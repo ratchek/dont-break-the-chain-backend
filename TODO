@@ -1,0 +1,7 @@
+ - Add sessions
+ - Add ability to remove users.
+ - Add authentication and authorization
+ - Add tests
+ - Don't update the whole calendar when a single date is flipped
+ - Add exceptions for when user doesn't exist, user email exists, etc
+ -  
