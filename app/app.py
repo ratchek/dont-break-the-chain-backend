@@ -27,7 +27,7 @@ def create_user():
 
 
 @app.route('/cal', methods = ['POST', 'GET'])
-def get_cal():
+def cal():
     if request.method == 'GET':
         return print_data()
     if request.method == 'POST':
@@ -49,11 +49,12 @@ def get_cal():
 # Overwrites the whole calendar with whatever the React page is sending over
 @app.route('/cal/save', methods = ['POST'])
 def save():
-    cal = request.json
-    set_data(cal)
-    print(cal)
-    print(print_data())
-    return "Saved?" 
+    cal = request.json["cal"]
+    user_id = request.json["user"]
+    user = User()
+    user.connect_to_user(user_id)
+    user.save_cal(cal)  
+    return "Saved!" 
         
 
 if __name__ == "__main__":
