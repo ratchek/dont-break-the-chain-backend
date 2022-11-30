@@ -4,13 +4,18 @@ It supports different calendars for different users.
 Check "TODO" to find a list of things it does not support (including but not limited to authentication!).  
 
 # Setup
-
+## Environment
 This project is managed with poetry instead of pip + venv  
 The easiest way to set up the enviroment is to install poetry. Check out the documentation here:
 https://python-poetry.org/docs/
 
-Once you have poetry installed on your system, open a terminal in the project directory and run `poetry install`.  
-Modify `example.env` to include your database variables and rename it to `.env` (on linux)  
+Once you have poetry installed on your system, open a terminal in the project directory and run `poetry install`. 
+
+## Database
+This project uses mongodb as a database. You need to sign up for a (free) account. Once that is done, you should set up a project and get a connection string from the website.  
+Modify `example.env` to include your database variables and connection string (make sure to switch out the password).Then rename the file to `.env` (on linux) 
+
+## Running
 To run the project:
 ```
 poetry shell
