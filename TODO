@@ -1,3 +1,4 @@
+ - Add a way to get user id based on email.
  - Add sessions
  - Add ability to remove users.
  - Add authentication and authorization
