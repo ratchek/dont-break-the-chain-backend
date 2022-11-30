@@ -1,7 +1,7 @@
 # Intro
 This project is a **very** basic API for a don't break the chain calendar app.  
-It supports different calendars for different users.  
-Check "TODO" to find a list of things it does not support (including but not limited to authentication!).  
+It supports getting and saving different calendars for different users.  
+Check "TODO" to find a list of things it does not support (including, but not limited to user authentication!)  
 
 # Setup
 ## Environment
