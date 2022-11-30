@@ -6,7 +6,10 @@ Check "TODO" to find a list of things it does not support (including but not lim
 # Setup
 
 This project is managed with poetry instead of pip + venv  
-To set up the environment, you should have poetry installed, then run `poetry install`.  
+The easiest way to set up the enviroment is to install poetry. Check out the documentation here:
+https://python-poetry.org/docs/
+
+Once you have poetry installed on your system, open a terminal in the project directory and run `poetry install`.  
 Modify `example.env` to include your database variables and rename it to `.env` (on linux)  
 To run the project:
 ```
